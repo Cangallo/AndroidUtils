@@ -12,6 +12,7 @@
             <flag name="medium" value="64" />
             <flag name="thin" value="128" />
         </attr>
+        <attr name="typeface" format="string" />
     </declare-styleable>
     <declare-styleable name="ChartView">
         <attr name="gridLineColor" format="reference|color" />

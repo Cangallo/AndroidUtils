@@ -2,7 +2,6 @@ package com.michaelpardo.android.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.text.TextUtils.TruncateAt;
@@ -33,10 +32,18 @@ public class TextView extends android.widget.TextView {
 	public TextView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 
-		Resources.Theme theme = context.getTheme();
-		TypedArray a = theme.obtainStyledAttributes(attrs, R.styleable.TextView, defStyle, 0);
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextView, defStyle, 0);
+		int textStyle = a.getInt(R.styleable.TextView_textStyle, 0);
+		String typeface = a.getString(R.styleable.TextView_typeface);
 
-		setTypefaceByStyle(a.getInt(R.styleable.TextView_textStyle, -1));
+		a.recycle();
+
+		if (textStyle > 0) {
+			setTypefaceByStyle(textStyle);
+		}
+		if (typeface != null) {
+			setTypeface(TypefaceUtils.getTypeface(context, typeface));
+		}
 	}
 
 	public void setTypefaceByStyle(int style) {

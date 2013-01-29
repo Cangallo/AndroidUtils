@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Spinner;
 
 @SuppressWarnings("unchecked")
 public class Ui {
@@ -80,6 +81,22 @@ public class Ui {
 		}
 
 		return new int[] { measuredWidth, measuredHeight };
+	}
+
+	// Spinners
+
+	public static void setSelection(Spinner spinner, Object selection) {
+		setSelection(spinner, selection.toString());
+	}
+
+	public static void setSelection(Spinner spinner, String selection) {
+		final int count = spinner.getCount();
+		for (int i = 0; i < count; i++) {
+			String item = spinner.getItemAtPosition(i).toString();
+			if (item.equalsIgnoreCase(selection)) {
+				spinner.setSelection(i);
+			}
+		}
 	}
 
 	// Keyboard

@@ -2,25 +2,23 @@ package com.michaelpardo.android.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Rect;
-import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 
 import com.michaelpardo.android.R;
 import com.michaelpardo.android.util.Ui;
 
-public class TextView extends android.widget.TextView {
-	public TextView(Context context) {
+public class EditText extends android.widget.EditText {
+	public EditText(Context context) {
 		super(context);
 		init(context, null, 0);
 	}
 
-	public TextView(Context context, AttributeSet attrs) {
+	public EditText(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context, attrs, 0);
 	}
 
-	public TextView(Context context, AttributeSet attrs, int defStyle) {
+	public EditText(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init(context, attrs, defStyle);
 	}
@@ -38,24 +36,5 @@ public class TextView extends android.widget.TextView {
 		else if (textStyle > 0) {
 			Ui.setTypefaceByStyle(this, textStyle);
 		}
-	}
-
-	@Override
-	protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-		if (focused) {
-			super.onFocusChanged(focused, direction, previouslyFocusedRect);
-		}
-	}
-
-	@Override
-	public void onWindowFocusChanged(boolean focused) {
-		if (focused) {
-			super.onWindowFocusChanged(focused);
-		}
-	}
-
-	@Override
-	public boolean isFocused() {
-		return getEllipsize() == TruncateAt.MARQUEE;
 	}
 }

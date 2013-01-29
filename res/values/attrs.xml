@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <attr name="textStyle">
+        <flag name="normal" value="0" />
+        <flag name="bold" value="1" />
+        <flag name="italic" value="2" />
+        <flag name="black" value="8" />
+        <flag name="condensed" value="16" />
+        <flag name="light" value="32" />
+        <flag name="medium" value="64" />
+        <flag name="thin" value="128" />
+    </attr>
+    <attr name="typeface" format="string" />
+
+    <!-- TextView -->
     <declare-styleable name="TextView">
-        <attr name="textStyle">
-            <flag name="normal" value="0" />
-            <flag name="bold" value="1" />
-            <flag name="italic" value="2" />
-            <flag name="black" value="8" />
-            <flag name="condensed" value="16" />
-            <flag name="light" value="32" />
-            <flag name="medium" value="64" />
-            <flag name="thin" value="128" />
-        </attr>
-        <attr name="typeface" format="string" />
+        <attr name="textStyle" />
+        <attr name="typeface" />
     </declare-styleable>
+
+    <!-- EditText -->
+    <declare-styleable name="EditText">
+        <attr name="textStyle" />
+        <attr name="typeface" />
+    </declare-styleable>
+
+    <!-- Button -->
+    <declare-styleable name="Button">
+        <attr name="textStyle" />
+        <attr name="typeface" />
+    </declare-styleable>
+
+    <!-- ChartView -->
     <declare-styleable name="ChartView">
         <attr name="gridLineColor" format="reference|color" />
         <attr name="gridLineWidth" format="reference|dimension" />

@@ -11,9 +11,19 @@ import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 @SuppressWarnings("unchecked")
 public class Ui {
+	private static final int NORMAL = 0;
+	private static final int BOLD = 1;
+	private static final int ITALIC = 2;
+	private static final int BLACK = 8;
+	private static final int CONDENSED = 16;
+	private static final int LIGHT = 32;
+	private static final int MEDIUM = 64;
+	private static final int THIN = 128;
+
 	public static Bitmap createBitmapFromView(View v) {
 		Bitmap bitmap = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
 		Canvas canvas = new Canvas(bitmap);
@@ -38,6 +48,77 @@ public class Ui {
 
 	public static <T> T findFragment(FragmentActivity activity, String tag) {
 		return (T) activity.getSupportFragmentManager().findFragmentByTag(tag);
+	}
+
+	// Typefaces
+
+	public static void setTypeface(TextView view, String path) {
+		view.setTypeface(TypefaceUtils.getTypeface(view.getContext(), path));
+	}
+
+	public static void setTypefaceByStyle(TextView view, int style) {
+		switch (style) {
+		case BLACK | ITALIC: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_BLACK_ITALIC);
+			break;
+		}
+		case BLACK: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_BLACK);
+			break;
+		}
+		case BOLD | CONDENSED | ITALIC: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_BOLD_CONDENSED_ITALIC);
+			break;
+		}
+		case BOLD | CONDENSED: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_BOLD_CONDENSED);
+			break;
+		}
+		case BOLD: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_BOLD);
+			break;
+		}
+		case CONDENSED | ITALIC: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_CONDENSED_ITALIC);
+			break;
+		}
+		case CONDENSED: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_CONDENSED);
+			break;
+		}
+		case LIGHT | ITALIC: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_LIGHT_ITALIC);
+			break;
+		}
+		case LIGHT: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_LIGHT);
+			break;
+		}
+		case THIN | ITALIC: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_THIN_ITALIC);
+			break;
+		}
+		case THIN: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_THIN);
+			break;
+		}
+		case MEDIUM | ITALIC: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_MEDIUM_ITALIC);
+			break;
+		}
+		case MEDIUM: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_MEDIUM);
+			break;
+		}
+		case ITALIC: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_ITALIC);
+			break;
+		}
+		case NORMAL: {
+			TypefaceUtils.loadTypeface(view, TypefaceUtils.ROBOTO_REGULAR);
+			break;
+		}
+		}
 	}
 
 	// Measuring

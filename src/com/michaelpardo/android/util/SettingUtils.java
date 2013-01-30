@@ -10,6 +10,10 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class SettingUtils {
+	public static boolean contains(Context context, int resId) {
+		return contains(context, context.getString(resId));
+	}
+
 	public static boolean contains(Context context, String key) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		return prefs.contains(key);
@@ -50,9 +54,17 @@ public class SettingUtils {
 		commitOrApply(editor);
 	}
 
+	public static boolean get(Context context, int resId, boolean defValue) {
+		return get(context, context.getString(resId), defValue);
+	}
+
 	public static boolean get(Context context, String key, boolean defValue) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		return prefs.getBoolean(key, defValue);
+	}
+
+	public static float get(Context context, int resId, float defValue) {
+		return get(context, context.getString(resId), defValue);
 	}
 
 	public static float get(Context context, String key, float defValue) {
@@ -60,14 +72,26 @@ public class SettingUtils {
 		return prefs.getFloat(key, defValue);
 	}
 
+	public static int get(Context context, int resId, int defValue) {
+		return get(context, context.getString(resId), defValue);
+	}
+
 	public static int get(Context context, String key, int defValue) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		return prefs.getInt(key, defValue);
 	}
 
+	public static long get(Context context, int resId, long defValue) {
+		return get(context, context.getString(resId), defValue);
+	}
+
 	public static long get(Context context, String key, long defValue) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		return prefs.getLong(key, defValue);
+	}
+
+	public static String get(Context context, int resId, String defValue) {
+		return get(context, context.getString(resId), defValue);
 	}
 
 	public static String get(Context context, String key, String defValue) {

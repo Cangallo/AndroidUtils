@@ -19,11 +19,30 @@ public class SettingUtils {
 		return prefs.contains(key);
 	}
 
+	public static void remove(Context context, int resId) {
+		remove(context, context.getString(resId));
+	}
+
+	public static void remove(Context context, String key) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.remove(key);
+		commitOrApply(editor);
+	}
+
+	public static void set(Context context, int resId, boolean value) {
+		set(context, context.getString(resId), value);
+	}
+
 	public static void set(Context context, String key, boolean value) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putBoolean(key, value);
 		commitOrApply(editor);
+	}
+
+	public static void set(Context context, int resId, float value) {
+		set(context, context.getString(resId), value);
 	}
 
 	public static void set(Context context, String key, float value) {
@@ -33,6 +52,10 @@ public class SettingUtils {
 		commitOrApply(editor);
 	}
 
+	public static void set(Context context, int resId, int value) {
+		set(context, context.getString(resId), value);
+	}
+
 	public static void set(Context context, String key, int value) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		SharedPreferences.Editor editor = prefs.edit();
@@ -40,11 +63,19 @@ public class SettingUtils {
 		commitOrApply(editor);
 	}
 
+	public static void set(Context context, int resId, long value) {
+		set(context, context.getString(resId), value);
+	}
+
 	public static void set(Context context, String key, long value) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putLong(key, value);
 		commitOrApply(editor);
+	}
+
+	public static void set(Context context, int resId, String value) {
+		set(context, context.getString(resId), value);
 	}
 
 	public static void set(Context context, String key, String value) {

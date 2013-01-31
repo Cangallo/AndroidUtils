@@ -19,6 +19,12 @@
         <attr name="typeface" />
     </declare-styleable>
 
+    <!-- AutoResizeTextView -->
+    <declare-styleable name="AutoResizeTextView">
+        <attr name="maxTextSize" format="reference|dimension" />
+        <attr name="minTextSize" format="reference|dimension" />
+    </declare-styleable>
+
     <!-- EditText -->
     <declare-styleable name="EditText">
         <attr name="textStyle" />

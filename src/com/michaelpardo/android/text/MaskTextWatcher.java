@@ -97,7 +97,7 @@ public class MaskTextWatcher implements TextWatcher {
 			// If this is an escape character step and add it
 			if (isEscape(target)) {
 				i++;
-				offset += 2;
+				offset++;
 				maskedText += mMask.charAt(i);
 			}
 			// Not a mask character

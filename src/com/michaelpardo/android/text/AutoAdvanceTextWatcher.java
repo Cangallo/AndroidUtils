@@ -13,6 +13,10 @@ public class AutoAdvanceTextWatcher implements TextWatcher {
 		mMaxLength = maxLength;
 	}
 
+	public void setMaxLength(int maxLength) {
+		mMaxLength = maxLength;
+	}
+
 	@Override
 	public void afterTextChanged(Editable s) {
 		if (s.length() >= mMaxLength) {

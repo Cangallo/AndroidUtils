@@ -1,5 +1,7 @@
 package com.michaelpardo.android.text;
 
+import com.michaelpardo.android.util.Log;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -26,7 +28,8 @@ public class MaskTextWatcher implements TextWatcher {
 	@Override
 	public void afterTextChanged(Editable s) {
 		String filtered = mMaskFormatter.valueToString(s);
-		
+		Log.t("original: %s - filtered: %s", s, filtered);
+
 		if (!TextUtils.equals(s, filtered)) {
 			s.replace(0, s.length(), filtered);
 		}

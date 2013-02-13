@@ -165,9 +165,8 @@ public class MaskFormatter {
 	}
 
 	private void append(StringBuffer result, String value, int[] index, String placeholder, MaskCharacter[] mask) {
-
-		for (int counter = 0, maxCounter = mask.length; counter < maxCounter; counter++) {
-			if (!mask[counter].append(result, value, index, placeholder)) {
+		for (int i = 0; i < mask.length; i++) {
+			if (!mask[i].append(result, value, index, placeholder)) {
 				return;
 			}
 		}
@@ -206,7 +205,7 @@ public class MaskFormatter {
 			return character;
 		}
 
-		public boolean append(StringBuffer buff, String formatting, int[] index, String placeholder) {
+		public boolean append(StringBuffer buffer, String formatting, int[] index, String placeholder) {
 			boolean inString = index[0] < formatting.length();
 			char character = inString ? formatting.charAt(index[0]) : 0;
 
@@ -215,7 +214,7 @@ public class MaskFormatter {
 			}
 
 			if (isLiteral()) {
-				buff.append(getChar(character));
+				buffer.append(getChar(character));
 
 				if (inString && character == getChar(character)) {
 					index[0] = index[0] + 1;
@@ -223,16 +222,16 @@ public class MaskFormatter {
 			}
 			else if (index[0] >= formatting.length()) {
 				if (placeholder != null && index[0] < placeholder.length()) {
-					buff.append(placeholder.charAt(index[0]));
+					buffer.append(placeholder.charAt(index[0]));
 				}
 				else {
-					buff.append(getPlaceholderCharacter());
+					buffer.append(getPlaceholderCharacter());
 				}
 
 				index[0] = index[0] + 1;
 			}
 			else if (isValidCharacter(character)) {
-				buff.append(getChar(character));
+				buffer.append(getChar(character));
 				index[0] = index[0] + 1;
 			}
 			else {

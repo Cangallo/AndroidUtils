@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.ResultReceiver;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.MeasureSpec;
@@ -34,19 +35,19 @@ public class Ui {
 		return bitmap;
 	}
 
-	public static <T> T findView(Activity activity, int resId) {
+	public static <T extends View> T findView(Activity activity, int resId) {
 		return (T) activity.findViewById(resId);
 	}
 
-	public static <T> T findView(View view, int resId) {
+	public static <T extends View> T findView(View view, int resId) {
 		return (T) view.findViewById(resId);
 	}
 
-	public static <T> T findFragment(FragmentActivity activity, int resId) {
+	public static <T extends Fragment> T findFragment(FragmentActivity activity, int resId) {
 		return (T) activity.getSupportFragmentManager().findFragmentById(resId);
 	}
 
-	public static <T> T findFragment(FragmentActivity activity, String tag) {
+	public static <T extends Fragment> T findFragment(FragmentActivity activity, String tag) {
 		return (T) activity.getSupportFragmentManager().findFragmentByTag(tag);
 	}
 

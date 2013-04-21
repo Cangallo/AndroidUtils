@@ -93,6 +93,10 @@ public class AndroidUtils {
 		}
 	}
 
+	@Deprecated
+	/*
+	 * This method is deprecated. Use BuildConfig.DEBUG instead
+	 */
 	public static boolean isRelease(Context context) {
 		final String releaseSignatureString = context.getString(R.string.release_signature);
 		if (releaseSignatureString == null || releaseSignatureString.length() == 0) {

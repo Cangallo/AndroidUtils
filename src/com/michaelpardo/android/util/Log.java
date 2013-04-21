@@ -10,6 +10,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 
+import com.michaelpardo.android.BuildConfig;
+
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -32,7 +34,7 @@ public class Log {
 	private static String mPackageVersion;
 
 	public static void initialize(Context context) {
-		initialize(context, null, null, !AndroidUtils.isRelease(context));
+		initialize(context, null, null, BuildConfig.DEBUG);
 	}
 
 	public static void initialize(Context context, String tag, String url, boolean enabled) {
@@ -54,7 +56,6 @@ public class Log {
 				}
 			}
 			catch (NameNotFoundException e) {
-				e.printStackTrace();
 			}
 		}
 	}

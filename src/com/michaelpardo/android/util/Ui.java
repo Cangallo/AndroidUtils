@@ -54,7 +54,9 @@ public class Ui {
 	// Typefaces
 
 	public static void setTypeface(TextView view, String path) {
-		view.setTypeface(TypefaceUtils.getTypeface(view.getContext(), path));
+		if (!view.isInEditMode()) {
+			view.setTypeface(TypefaceUtils.getTypeface(view.getContext(), path));
+		}
 	}
 
 	public static void setTypefaceByStyle(TextView view, int style) {

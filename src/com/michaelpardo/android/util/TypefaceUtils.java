@@ -53,7 +53,7 @@ public final class TypefaceUtils {
 	}
 
 	public static void loadTypeface(TextView view, String font) {
-		if (view == null) {
+		if (view == null || view.isInEditMode()) {
 			return;
 		}
 

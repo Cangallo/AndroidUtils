@@ -1,0 +1,19 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.4.2'
+    }
+}
+
+apply plugin: 'android'
+
+dependencies {
+    compile fileTree('libs')
+}
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion "17.0.0"
+}

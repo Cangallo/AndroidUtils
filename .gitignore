@@ -32,3 +32,8 @@ proguard-project.txt
 #Other
 .DS_Store
 tmp
+
+# Gradle
+.gradle
+/build
+/out

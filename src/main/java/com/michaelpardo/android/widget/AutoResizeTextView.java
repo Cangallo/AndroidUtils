@@ -138,27 +138,22 @@ public class AutoResizeTextView extends com.michaelpardo.android.widget.TextView
 	//////////////////////////////////////////////////////////////////////////////////////
 
 	private void init(Context context, AttributeSet attrs, int defStyle) {
-		TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.AutoResizeTextView);
-		setMaxTextSize(attributes.getDimension(R.styleable.AutoResizeTextView_maxTextSize, getTextSize()));
-		setMinTextSize(attributes.getDimension(R.styleable.AutoResizeTextView_minTextSize, MIN_TEXT_SIZE));
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AutoResizeTextView);
+		setMaxTextSize(a.getDimension(R.styleable.AutoResizeTextView_maxTextSize, getTextSize()));
+		setMinTextSize(a.getDimension(R.styleable.AutoResizeTextView_minTextSize, MIN_TEXT_SIZE));
+		a.recycle();
 	}
 
 	private void resizeText(int widthPx) {
 		CharSequence text = getText();
-		// Do not resize if the view does not have dimensions or there is no text
 		if (text == null || text.length() == 0 || widthPx <= 0) {
 			return;
 		}
 
-		// Get the text view's paint object (as a copy, so we don't modify it)
 		TextPaint textPaint = new TextPaint();
 		textPaint.set(getPaint());
 
-		// If there is a max text size set, use that; otherwise, base the max text size
-		// on the current text size.
 		float targetTextSize = mMaxTextSize > 0 ? mMaxTextSize : textPaint.getTextSize();
-
-		// Default to a single line for display
 		int maxLines = mMaxLines > 0 ? mMaxLines : 1;
 
 		int lineCount = getTextLineCount(text, textPaint, widthPx, targetTextSize);
@@ -167,20 +162,14 @@ public class AutoResizeTextView extends com.michaelpardo.android.widget.TextView
 			lineCount = getTextLineCount(text, textPaint, widthPx, targetTextSize);
 		}
 
-		// Some devices try to auto adjust line spacing, so force default line spacing 
-		// and invalidate the layout as a side effect
 		setTextSize(TypedValue.COMPLEX_UNIT_PX, targetTextSize);
 		setLineSpacing(mSpacingAdd, mSpacingMult);
 
-		// Reset force resize flag
 		mNeedsResize = false;
 	}
 
 	private int getTextLineCount(CharSequence source, TextPaint paint, int widthPx, float textSize) {
-		// Update the text paint object
 		paint.setTextSize(textSize);
-
-		// Draw using a static layout
 		StaticLayout layout = new StaticLayout(source, paint, widthPx, Alignment.ALIGN_NORMAL, mSpacingMult,
 				mSpacingAdd, true);
 		layout.draw(TEXT_RESIZE_CANVAS);

@@ -139,8 +139,8 @@ public class AutoResizeTextView extends com.michaelpardo.android.widget.TextView
 
 	private void init(Context context, AttributeSet attrs, int defStyle) {
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AutoResizeTextView);
-		setMaxTextSize(a.getDimension(R.styleable.AutoResizeTextView_maxTextSize, getTextSize()));
-		setMinTextSize(a.getDimension(R.styleable.AutoResizeTextView_minTextSize, MIN_TEXT_SIZE));
+		mMaxTextSize = a.getDimension(R.styleable.AutoResizeTextView_maxTextSize, getTextSize());
+		mMinTextSize = a.getDimension(R.styleable.AutoResizeTextView_minTextSize, mMinTextSize);
 		a.recycle();
 	}
 

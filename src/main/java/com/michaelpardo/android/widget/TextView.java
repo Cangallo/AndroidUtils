@@ -56,10 +56,10 @@ public class TextView extends android.widget.TextView {
 	}
 
 	private void init(Context context, AttributeSet attrs, int defStyle) {
-		final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Button, defStyle, 0);
+		final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextView, defStyle, 0);
 		final int textStyle = a.getInt(R.styleable.TextView_textStyle, 0);
 		final String typeface = a.getString(R.styleable.TextView_typeface);
-		final boolean textAllCaps = a.getBoolean(R.styleable.TextView_textAllCaps, false);
+		final boolean textAllCaps = a.getBoolean(R.styleable.TextView__textAllCaps, false);
 
 		a.recycle();
 

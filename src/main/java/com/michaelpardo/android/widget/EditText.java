@@ -16,28 +16,69 @@ package com.michaelpardo.android.widget;
  * limitations under the License.
  */
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
+import android.text.method.TransformationMethod;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
+import android.view.View;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import com.michaelpardo.android.R;
+import com.michaelpardo.android.util.Ui;
 
 public class EditText extends android.widget.EditText {
+	private static final TransformationMethod TRANSFORMATION_TEXT_ALL_CAPS = new TransformationMethod() {
+		@Override
+		public void onFocusChanged(View view, CharSequence sourceText, boolean focused, int direction,
+				Rect previouslyFocusedRect) {
+		}
+
+		@Override
+		public CharSequence getTransformation(CharSequence source, View view) {
+			return source.toString().toUpperCase(view.getContext().getResources().getConfiguration().locale);
+		}
+	};
+
 	public EditText(Context context) {
 		super(context);
+		init(context, null, 0);
 	}
 
 	public EditText(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		init(context, attrs, 0);
 	}
 
 	public EditText(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		init(context, attrs, defStyle);
+	}
+
+	private void init(Context context, AttributeSet attrs, int defStyle) {
+		final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextView, defStyle, 0);
+		final int textStyle = a.getInt(R.styleable.TextView_textStyle, 0);
+		final String typeface = a.getString(R.styleable.TextView_typeface);
+		final boolean textAllCaps = a.getBoolean(R.styleable.TextView__textAllCaps, false);
+
+		a.recycle();
+
+		if (typeface != null) {
+			Ui.setTypeface(this, typeface);
+		}
+		else if (textStyle > 0) {
+			Ui.setTypefaceByStyle(this, textStyle);
+		}
+
+		if (textAllCaps) {
+			setTransformationMethod(TRANSFORMATION_TEXT_ALL_CAPS);
+		}
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////
